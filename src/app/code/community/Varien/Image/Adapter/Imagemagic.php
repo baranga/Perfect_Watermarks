@@ -314,14 +314,40 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
     }
 
     /**
+     * get quality
      * @return int
      */
     public function getQuality()
     {
         if ($this->_quality == null) {
-            $this->_quality = 80;
+            $this->_quality = $this->getImageMagick()->getImageCompressionQuality();
         }
         return $this->_quality;
+    }
+    
+    /**
+     * set quality
+     * @param int $quality
+     * @return Varien_Image_Adapter_Imagemagic
+     */
+    public function setQuality($quality)
+    {
+        $this->_quality = (int) $quality;
+        return $this;
+    }
+    
+    /**
+     * combined getter/setter for quality
+     * @see Varien_Image_Adapter_Abstract::quality
+     * @param int|null $quality
+     * @return int
+     */
+    public function quality($quality = null)
+    {
+        if ($quality !== null) {
+            return $this->setQuality($quality);
+        }
+        return $this->getQuality();
     }
 
     /**
