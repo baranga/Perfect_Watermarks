@@ -329,7 +329,7 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
     public function getQuality()
     {
         if ($this->_quality == null) {
-            $this->_quality = 80;
+            $this->_quality = $this->getOriginalQuality();
         }
         return $this->_quality;
     }
