@@ -312,7 +312,16 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
         @$this->getImageMagick()->clear();
         @$this->getImageMagick()->destroy();
     }
-
+    
+    /**
+     * original image quality
+     * @return int
+     */
+    public function getOriginalQuality()
+    {
+        $this->getImageMagick()->getImageCompressionQuality();
+    }
+    
     /**
      * get quality
      * @return int
@@ -320,7 +329,7 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
     public function getQuality()
     {
         if ($this->_quality == null) {
-            $this->_quality = $this->getImageMagick()->getImageCompressionQuality();
+            $this->_quality = 80;
         }
         return $this->_quality;
     }
