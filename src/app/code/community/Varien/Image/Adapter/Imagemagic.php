@@ -71,6 +71,8 @@ class Varien_Image_Adapter_Imagemagic extends Varien_Image_Adapter_Abstract
         $this->getImageMagick()->setImageCompressionQuality(
             $this->getQuality()
         );
+        // enable progressive interlacing
+        $this->getImageMagick()->setInterlaceScheme(Imagick::INTERLACE_PLANE);
         //remove all underlying information
         $this->getImageMagick()->stripImage();
         //write to file system
